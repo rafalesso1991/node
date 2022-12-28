@@ -1,6 +1,6 @@
 import { Column, Entity, OneToOne } from "typeorm";
 import { BaseEntity } from "../config/base.entity";
-import { CustomerEntity } from "../entities/customer.entity";
+import { CustomerEntity } from "./customer.entity";
 
 @Entity({ name: "users" })
 export class UserEntity extends BaseEntity {
