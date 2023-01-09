@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { BaseEntity } from "../config/base.entity";
-import { InvoiceDetailEntity } from "./inv-detail.entity";
 import { CustomerEntity } from "./customer.entity";
+import { InvoiceDetailEntity } from "./inv-detail.entity";
 
 @Entity({ name: "invoices" })
 export class InvoiceEntity extends BaseEntity {

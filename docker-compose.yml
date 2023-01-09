@@ -1,7 +1,7 @@
 version: "3.1"
 
 services:
-  codrr_db:
+  vidasanadiet_db:
     image: mysql:5.7
     volumes:
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -9,8 +9,8 @@ services:
     ports:
       - "3312:3306"
     environment:
-      MYSQL_DATABASE: codrr_db
-      MYSQL_ROOT_USER: ucodrr
-      MYSQL_USER: ucodrr
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: vidasanadiet_db
+      MYSQL_ROOT_USER: uvidasanadiet
+      MYSQL_USER: uvidasanadiet
+      MYSQL_ROOT_PASSWORD: pasadeuva
+      MYSQL_PASSWORD: pasadeuva
