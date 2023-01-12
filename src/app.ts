@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import { InvoiceRouter } from "./routers/invoice.router";
 import { ProductRouter } from "./routers/product.router";
 import { UserRouter } from "./routers/user.router";
 import { ConfigServer } from "./config/config";
@@ -21,6 +22,7 @@ class Server extends ConfigServer {
     };
     routers(): Array<express.Router> {
         return [
+            new InvoiceRouter().router,
             new ProductRouter().router,
             new UserRouter().router
         ]
