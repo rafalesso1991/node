@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import { ProductRouter } from "./routers/product.router";
 import { UserRouter } from "./routers/user.router";
 import { ConfigServer } from "./config/config";
 import { DataSource } from "typeorm";
@@ -19,7 +20,10 @@ class Server extends ConfigServer {
         this.listen();
     };
     routers(): Array<express.Router> {
-        return [new UserRouter().router];
+        return [
+            new ProductRouter().router,
+            new UserRouter().router
+        ]
     };
     async dbConnect(): Promise<DataSource | void> {
         return this.initConnect

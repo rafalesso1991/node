@@ -22,5 +22,4 @@ export class UserDTO extends BaseDTO {
 
   @IsNotEmpty()
   province!: string;
-
 };

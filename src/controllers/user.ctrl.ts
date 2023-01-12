@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { UserService } from "../services/user.service";
 import { HttpResponse } from "../shared/http.response";
+import { UserService } from "../services/user.service";
 import { DeleteResult, UpdateResult } from "typeorm";
 
 export class UserController {
@@ -17,6 +17,7 @@ export class UserController {
             }
             return this.httpResponse.Ok(res, data);
         } catch (e) {
+            console.error(e);
             return this.httpResponse.Error(res, e);
         };
     };
