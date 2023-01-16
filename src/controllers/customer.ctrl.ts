@@ -51,7 +51,7 @@ export class CustomerController {
     try {
       const data: DeleteResult = await this.customerService.deleteCustomer(id);
       if (!data.affected) {
-        return this.httpResponse.NotFound(res, "Error en borrar cliente");
+        return this.httpResponse.NotFound(res, "No se ha podido borrar el cliente");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {
@@ -65,7 +65,7 @@ export class CustomerController {
     try {
       const data: UpdateResult = await this.customerService.updateCustomer(id, req.body);
       if (!data.affected) {
-        return this.httpResponse.NotFound(res, "Error en actualizar cliente");
+        return this.httpResponse.NotFound(res, "No se ha podido actualizar el cliente");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {

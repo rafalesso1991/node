@@ -4,9 +4,7 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
 dotenv.config({
   path:
-    process.env.NODE_ENV !== undefined
-      ? `.${process.env.NODE_ENV.trim()}.env`
-      : ".env",
+    process.env.NODE_ENV !== undefined ? `.${process.env.NODE_ENV.trim()}.env` : ".env",
 });
 
 const Config: DataSourceOptions = {
@@ -19,6 +17,7 @@ const Config: DataSourceOptions = {
   entities: [__dirname + "/../entities/*.entity{.ts,.js}"],
   migrations: [__dirname + "/../migrations/*{.ts,.js}"],
   synchronize: false,
+  migrationsRun: true,
   logging: false,
   namingStrategy: new SnakeNamingStrategy(),
 };

@@ -27,7 +27,7 @@ export class InvoiceController {
     try {
       const data = await this.invoiceService.findInvoiceById(id);
       if (!data) {
-        return this.httpResponse.NotFound(res, "No existe detalle de factura con ese id");
+        return this.httpResponse.NotFound(res, "No existe factura con ese id");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {
@@ -54,7 +54,7 @@ export class InvoiceController {
         req.body
       );
       if (!data.affected) {
-        return this.httpResponse.NotFound(res, "Error en actualizar factura");
+        return this.httpResponse.NotFound(res, "No se ha podido actualizar la factura");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {
@@ -68,7 +68,7 @@ export class InvoiceController {
     try {
       const data: DeleteResult = await this.invoiceService.deleteInvoice(id);
       if (!data.affected) {
-        return this.httpResponse.NotFound(res, "Error en borrar factura");
+        return this.httpResponse.NotFound(res, "No se ha podido borrar la factura");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {

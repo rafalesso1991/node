@@ -30,7 +30,7 @@ export abstract class ConfigServer {
         };
         return "." + arrEnv.join("."); // ['prod', 'env'] => 'prod.env'
     };
-    // Connection Database
+    // GETTER Connection Database
     get initConnect(): Promise<DataSource> {
         return AppDataSource.initialize();
     };

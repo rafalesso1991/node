@@ -13,7 +13,7 @@ export class InvoiceDetailController {
     try {
       const data = await this.invoiceDetailService.findAllInvoiceDetails();
       if (data.length === 0) {
-        return this.httpResponse.NotFound(res, "No existen datos en detalles de factura");
+        return this.httpResponse.NotFound(res, "No existen datos en detalle de factura");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {
@@ -56,7 +56,7 @@ export class InvoiceDetailController {
       const data: DeleteResult =
         await this.invoiceDetailService.deleteInvoiceDetail(id);
       if (!data.affected) {
-        return this.httpResponse.NotFound(res, "Error en borrar detalle de factura");
+        return this.httpResponse.NotFound(res, "No se ha podido borrar el detalle de factura");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {
@@ -72,7 +72,7 @@ export class InvoiceDetailController {
         await this.invoiceDetailService.updateInvoiceDetail(id, req.body);
 
       if (!data.affected) {
-        return this.httpResponse.NotFound(res, "Error en actualizar detalle de factura");
+        return this.httpResponse.NotFound(res, "No se ha podido actualizar el detalle de factura");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {

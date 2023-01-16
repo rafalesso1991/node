@@ -65,7 +65,7 @@ export class CategoryController {
     try {
       const data: DeleteResult = await this.categoryService.deleteCategory(id);
       if (!data.affected) {
-        return this.httpResponse.NotFound(res, "Error en borrar categoría");
+        return this.httpResponse.NotFound(res, "No se ha podido borrar la categoría");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {
@@ -79,7 +79,7 @@ export class CategoryController {
     try {
       const data: UpdateResult = await this.categoryService.updateCategory(id, req.body);
       if (!data.affected) {
-        return this.httpResponse.NotFound(res, "Error en actualizar categoría");
+        return this.httpResponse.NotFound(res, "No se ha podido actualizar la categoría");
       };
       return this.httpResponse.Ok(res, data);
     } catch (e) {
