@@ -34,6 +34,19 @@ export class UserController {
             return this.httpResponse.Error(res, e);
         };
     };
+    // GET USER WITH RELATION
+    async getUserWithRelation(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const data = await this.userService.findUserWithRelation(id);
+            if (!data) {
+                return this.httpResponse.NotFound(res, "No existe un usuario registrado con ese id");
+            }
+            return this.httpResponse.Ok(res, data);
+        } catch (e) {
+            return this.httpResponse.Error(res, e);
+        };
+    };
     // CREATE USER
     async createUser(req: Request, res: Response) {
         try {

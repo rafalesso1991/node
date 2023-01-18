@@ -16,7 +16,7 @@ export class InvoiceDTO extends BaseDTO {
 export enum StatusInvoice {
   IN_CART = "IN_CART",
   PENDING_PAYMENT = "PENDING_PAYMENT",
-  PENDDING_APPROVED = "PENDING_APPROVED",
+  PENDING_APPROVED = "PENDING_APPROVED",
   APPROVED = "APPROVED",
   ERROR = "ERROR",
 };
