@@ -2,12 +2,12 @@ import "reflect-metadata"
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import { CategoryRouter } from "./routers/category.router";
-import { CustomerRouter } from "./routers/customer.router";
-import { InvoiceDetailRouter } from "./routers/inv-detail.router";
-import { InvoiceRouter } from "./routers/invoice.router";
-import { ProductRouter } from "./routers/product.router";
-import { UserRouter } from "./routers/user.router";
+import { CategoryRouter } from "./routes/category.routes";
+import { CustomerRouter } from "./routes/customer.routes";
+import { InvoiceDetailRouter } from "./routes/inv-detail.routes";
+import { InvoiceRouter } from "./routes/invoice.routes";
+import { ProductRouter } from "./routes/product.routes";
+import { UserRouter } from "./routes/user.routes";
 import { ConfigServer } from "./config/config";
 import { DataSource } from "typeorm";
 
