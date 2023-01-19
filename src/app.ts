@@ -10,6 +10,8 @@ import { ProductRouter } from "./routes/product.routes";
 import { UserRouter } from "./routes/user.routes";
 import { ConfigServer } from "./config/config";
 import { DataSource } from "typeorm";
+import { LoginStrategy } from "./strategies/login.strategy";
+import { JwtStrategy } from "./strategies/jwt.strategy";
 
 class Server extends ConfigServer {
     public app: express.Application = express();
@@ -18,6 +20,7 @@ class Server extends ConfigServer {
         super();
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: true}));
+        this.passportUse();
         this.dbConnect();
         this.app.use(morgan("dev"));
         this.app.use(cors());
@@ -34,6 +37,9 @@ class Server extends ConfigServer {
             new UserRouter().router
         ]
     };
+    passportUse() {
+        return [new LoginStrategy().use, new JwtStrategy().use];
+    }
     async dbConnect(): Promise<DataSource | void> {
         return this.initConnect
             .then(() => {
