@@ -1,7 +1,7 @@
 import * as bcrypt from "bcrypt";
 import { DeleteResult, UpdateResult } from "typeorm";
 import { BaseService } from "../config/base.service";
-import { UserDTO } from "../dto/user.dto";
+import { RoleType, UserDTO } from "../dto/user.dto";
 import { UserEntity } from "../entities/user.entity";
 
 export class UserService extends BaseService<UserEntity> {
@@ -15,6 +15,19 @@ export class UserService extends BaseService<UserEntity> {
     // FIND USER BY ID
     async findUserById(id: string): Promise<UserEntity | null> {
         return (await this.execRepository).findOneBy({ id });
+    };
+    // FIND USER WITH ROLE
+    async findUserWithRole(
+        id: string,
+        role: RoleType
+    ): Promise<UserEntity | null> {
+        const user = (await this.execRepository)
+            .createQueryBuilder("user")
+            .where({ id })
+            .andWhere({ role })
+            .getOne();
+
+        return user;
     };
     // FIND USER WITH CUSTOMER RELATION
     async findUserWithRelation(id: string): Promise<UserEntity | null> {
