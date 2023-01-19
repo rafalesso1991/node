@@ -1,3 +1,4 @@
+import * as bcrypt from "bcrypt";
 import { DeleteResult, UpdateResult } from "typeorm";
 import { BaseService } from "../config/base.service";
 import { UserDTO } from "../dto/user.dto";
@@ -22,10 +23,28 @@ export class UserService extends BaseService<UserEntity> {
           .leftJoinAndSelect("user.customer", "customer")
           .where({ id })
           .getOne();
-      }
+    };
+    // FIND USER BY EMAIL
+    async findUserByEmail(email: string): Promise<UserEntity | null> {
+        return (await this.execRepository)
+            .createQueryBuilder("user")
+            .addSelect("user.password")
+            .where({ email })
+            .getOne();
+    };
+    // FIND USER BY USERNAME
+    async findUserByUsername(username: string): Promise<UserEntity | null> {
+        return (await this.execRepository)
+            .createQueryBuilder("user")
+            .addSelect("user.password")
+            .where({ username })
+            .getOne();
+    };
     // CREATE USER
     async createUser(body: UserDTO): Promise<UserEntity> {
-        const newUser = (await this.execRepository).create(body);
+        const newUser = (await this.execRepository).create(body); // se guarda en memoria y no en la bbdd
+        const hash = await bcrypt.hash(newUser.password, 10);
+        newUser.password = hash;
         return (await this.execRepository).save(newUser);
     };
     // DELETE USER
